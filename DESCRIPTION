@@ -8,7 +8,6 @@ Authors@R:
       person("Mateo", "TU_APELLIDO", email = "mateonicolasgarcia2007@gmail.com",
              role = "aut")
     )
-
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Config/roxygen2/version: 8.1.1
