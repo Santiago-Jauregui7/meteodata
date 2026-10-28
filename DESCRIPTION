@@ -9,9 +9,13 @@ Authors@R:
              role = "aut")
     )
 Description: Herramientas para leer, resumir y visualizar datos
-meteorologicos de estaciones del INTA
+    meteorologicos de estaciones del INTA
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Imports: 
+    cli,
+    readr,
+    utils
