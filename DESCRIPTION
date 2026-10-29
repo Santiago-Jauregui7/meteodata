@@ -27,6 +27,7 @@ Depends:
     R (>= 3.5)
 LazyData: true
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
