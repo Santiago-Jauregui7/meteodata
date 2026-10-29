@@ -17,7 +17,10 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports: 
     cli,
+    dplyr,
     readr,
+    rlang,
+    stats,
     utils
 Depends: 
     R (>= 3.5)
