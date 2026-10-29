@@ -2,10 +2,24 @@
 output: github_document
 ---
 
+```{r configuracion, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  fig.width = 7,
+  fig.height = 4,
+  out.width = "100%"
+)
+```
+
 # meteodata
 
-Paquete de R desarrollado para Programación II que permite
-leer y analizar datos de estaciones meteorológicas del INTA.
+<!-- badges: start -->
+<!-- badges: end -->
+
+Paquete de R desarrollado para Programación II que permite leer,
+resumir y visualizar datos meteorológicos de estaciones del INTA.
 
 ## Autores
 
@@ -14,6 +28,8 @@ leer y analizar datos de estaciones meteorológicas del INTA.
 
 ## Instalación
 
+Instalá el paquete desde GitHub:
+
 ```{r instalacion, eval=FALSE}
 install.packages("remotes")
 remotes::install_github("Santiago-Jauregui7/meteodata")
@@ -21,13 +37,16 @@ remotes::install_github("Santiago-Jauregui7/meteodata")
 
 ## Datos incluidos
 
-El dataset `estaciones` reúne observaciones diarias de cinco
-estaciones: NH0472, NH0910, NH0046, NH0098 y NH0437.
+El dataset `estaciones` contiene 95.681 observaciones y 35 columnas.
+Reúne datos diarios de cinco estaciones: NH0472, NH0910, NH0046,
+NH0098 y NH0437.
 
 ```{r datos}
 library(meteodata)
 
 dim(estaciones)
+
+unique(estaciones$id)
 
 head(
   estaciones[
@@ -36,10 +55,20 @@ head(
 )
 ```
 
+La columna `id` identifica la estación y `fecha` indica el día de
+la observación. La temperatura de abrigo a 150 cm está expresada
+en grados Celsius.
+
+Los datos provienen del
+[repositorio del curso](https://github.com/rse-r/intro-programacion/tree/main/datos).
+
 ## Leer datos de una estación
 
-La función `leer_datos()` descarga el CSV cuando no existe
-en la ruta indicada. Si ya está guardado, utiliza ese archivo.
+`leer_datos()` recibe el identificador de una estación y la ruta
+de un archivo CSV. Si el archivo existe, lo lee directamente.
+Si todavía no existe, intenta descargarlo y guardarlo.
+
+Este ejemplo requiere conexión a Internet:
 
 ```{r lectura, eval=FALSE}
 datos <- leer_datos(
@@ -50,8 +79,65 @@ datos <- leer_datos(
 head(datos)
 ```
 
-## Funciones previstas
+## Resumir temperaturas
 
-- `leer_datos()`: lectura y descarga de datos, implementada.
-- `tabla_resumen_temperatura()`: resumen de temperaturas, en desarrollo.
-- `grafico_temperatura_mensual()`: gráfico mensual, en desarrollo.
+`tabla_resumen_temperatura()` calcula la temperatura mínima,
+máxima, promedio y el desvío estándar de cada estación.
+
+```{r resumen}
+tabla_resumen_temperatura(estaciones)
+```
+
+El argumento `ids` permite seleccionar una o varias estaciones:
+
+```{r resumen-filtrado}
+tabla_resumen_temperatura(
+  estaciones,
+  ids = c("NH0437", "NH0472")
+)
+```
+
+Los valores faltantes se excluyen de los cálculos. Si una estación
+no tiene temperaturas válidas, sus estadísticas se muestran como NA.
+
+## Graficar temperaturas mensuales
+
+`grafico_temperatura_mensual()` calcula y grafica la temperatura
+promedio de cada mes del calendario para cada estación.
+Reúne las observaciones del mismo mes de los distintos años.
+
+Podemos seleccionar estaciones y personalizar los colores y el título:
+
+```{r grafico-mensual}
+seleccion <- estaciones[
+  estaciones$id %in% c("NH0437", "NH0472"),
+]
+
+grafico_temperatura_mensual(
+  seleccion,
+  colores = c(
+    NH0437 = "steelblue",
+    NH0472 = "tomato"
+  ),
+  titulo = "Comparacion de temperaturas mensuales"
+)
+```
+
+## Documentación
+
+Consultá la
+[guía de uso](https://github.com/Santiago-Jauregui7/meteodata/blob/main/vignettes/uso_de_meteodata.Rmd)
+para encontrar más explicaciones y ejemplos.
+
+También podés consultar la ayuda de las funciones desde R:
+
+```{r ayuda, eval=FALSE}
+?leer_datos
+?tabla_resumen_temperatura
+?grafico_temperatura_mensual
+```
+
+## Licencia
+
+El código del paquete se distribuye bajo licencia MIT.
+Consultá el archivo [LICENSE.md](LICENSE.md).
