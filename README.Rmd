@@ -140,6 +140,14 @@ También podés consultar la ayuda de las funciones desde R:
 ?grafico_temperatura_mensual
 ```
 
+## Contribuciones
+
+Para reportar problemas o proponer mejoras, consultá la
+[guía de contribución](CONTRIBUTING.md).
+
+Todas las personas que participen deben respetar el
+[código de conducta](CODE_OF_CONDUCT.md).
+
 ## Licencia
 
 El código del paquete se distribuye bajo licencia MIT.
