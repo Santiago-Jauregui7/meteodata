@@ -127,9 +127,11 @@ grafico_temperatura_mensual(
 
 ## Documentación
 
-Consultá la
-[guía de uso](https://github.com/Santiago-Jauregui7/meteodata/blob/main/vignettes/uso_de_meteodata.Rmd)
-para encontrar más explicaciones y ejemplos.
+La documentación completa está en el
+[sitio web de meteodata](https://santiago-jauregui7.github.io/meteodata/).
+
+Para comenzar, consultá la
+[guía de uso](https://santiago-jauregui7.github.io/meteodata/articles/uso_de_meteodata.html).
 
 También podés consultar la ayuda de las funciones desde R:
 
