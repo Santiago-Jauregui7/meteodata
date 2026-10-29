@@ -8,10 +8,8 @@ Authors@R:
       person("Mateo", "Garcia", email = "mateonicolasgarcia2007@gmail.com",
              role = "aut")
     )
-Description: Herramientas para leer, resumir y visualizar datos
-    meteorologicos de estaciones del INTA
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: Herramientas para leer archivos de estaciones meteorologicas del INTA, resumir temperaturas por estacion y visualizar promedios mensuales. Incluye datos de cinco estaciones y ejemplos de uso.
+License: MIT + file LICENSE
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -33,3 +31,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+URL: https://github.com/Santiago-Jauregui7/meteodata
+BugReports: https://github.com/Santiago-Jauregui7/meteodata/issues
