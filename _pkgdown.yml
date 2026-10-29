@@ -1,0 +1,19 @@
+url: https://santiago-jauregui7.github.io/meteodata/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+reference:
+  - title: Lectura de datos
+    contents:
+      - leer_datos
+
+  - title: Resumen y visualizacion
+    contents:
+      - tabla_resumen_temperatura
+      - grafico_temperatura_mensual
+
+  - title: Datos incluidos
+    contents:
+      - estaciones

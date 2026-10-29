@@ -31,5 +31,6 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/Santiago-Jauregui7/meteodata
+URL: https://santiago-jauregui7.github.io/meteodata/, https://github.com/Santiago-Jauregui7/meteodata
 BugReports: https://github.com/Santiago-Jauregui7/meteodata/issues
+Config/Needs/website: pkgdown
