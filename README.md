@@ -3,6 +3,11 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/Santiago-Jauregui7/meteodata/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/Santiago-Jauregui7/meteodata/actions/workflows/R-CMD-check.yaml)
+[![Cobertura de
+tests](https://github.com/Santiago-Jauregui7/meteodata/actions/workflows/test-coverage.yaml/badge.svg?branch=main)](https://github.com/Santiago-Jauregui7/meteodata/actions/workflows/test-coverage.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 Paquete de R desarrollado para Programación II que permite leer, resumir
