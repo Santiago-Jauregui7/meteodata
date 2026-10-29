@@ -1,0 +1,138 @@
+---
+
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+|                                            |
+|--------------------------------------------|
+| title: "Uso de meteodata"                  |
+| author: "Santiago Jauregui y Mateo Garcia" |
+| output: rmarkdown::html_vignette           |
+| vignette: \>                               |
+| \%\VignetteIndexEntry{Uso de meteodata}    |
+| \%\VignetteEngine{knitr::rmarkdown}        |
+| \%\VignetteEncoding{UTF-8}                 |
+
+```{r configuracion, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4
+)
+```
+
+\## Introducción
+
+meteodata permite leer, resumir y graficar datos meteorológicos de estaciones del INTA.
+
+Esta guía presenta el dataset incluido y ejemplos de las tres funciones del paquete.
+
+\## Cargar el paquete
+
+```{r cargar-paquete}
+library(meteodata)
+```
+
+\## Explorar los datos incluidos
+
+El dataset `estaciones` contiene observaciones diarias de cinco estaciones meteorológicas.
+
+```{r explorar-datos}
+dim(estaciones)
+unique(estaciones$id)
+
+head(
+  estaciones[
+    c("id", "fecha", "temperatura_abrigo_150cm")
+  ]
+)
+```
+
+La columna `id` identifica la estación y `fecha` indica el día de la observación. La variable `temperatura_abrigo_150cm` contiene la temperatura de abrigo a 150 cm, expresada en grados Celsius.
+
+\## Leer un archivo local
+
+`leer_datos()` recibe el identificador de una estación y la ruta de un archivo CSV. Cuando el archivo ya existe, lo lee directamente.
+
+Para mostrar esta posibilidad, guardamos algunas observaciones en un CSV temporal y luego lo leemos.
+
+```{r leer-archivo-local}
+muestra <- estaciones[
+  estaciones$id == "NH0437",
+  c("id", "fecha", "temperatura_abrigo_150cm")
+]
+
+archivo <- tempfile(fileext = ".csv")
+
+readr::write_csv(
+  head(muestra, 6),
+  archivo
+)
+
+datos_leidos <- leer_datos(
+  id = "NH0437",
+  ruta = archivo
+)
+
+datos_leidos
+
+unlink(archivo)
+```
+
+Si el archivo todavía no existe, la función intenta descargarlo. Esta llamada muestra cómo hacerlo; requiere conexión a Internet.
+
+```{r descargar-estacion, eval=FALSE}
+datos <- leer_datos(
+  id = "NH0437",
+  ruta = "datos/NH0437.csv"
+)
+```
+
+\## Resumir las temperaturas
+
+`tabla_resumen_temperatura()` calcula la temperatura mínima, máxima, promedio y el desvío estándar para cada estación.
+
+```{r resumen-completo}
+tabla_resumen_temperatura(estaciones)
+```
+
+El argumento `ids` permite seleccionar las estaciones que queremos analizar.
+
+```{r resumen-filtrado}
+tabla_resumen_temperatura(
+  estaciones,
+  ids = c("NH0437", "NH0472")
+)
+```
+
+Los valores faltantes se excluyen de los cálculos. Si una estación no tiene temperaturas válidas, sus estadísticas se muestran como NA.
+
+\## Graficar las temperaturas mensuales
+
+`grafico_temperatura_mensual()` calcula el promedio de temperatura de cada mes del calendario para cada estación.
+
+Cada punto reúne los registros del mismo mes de los distintos años disponibles.
+
+```{r grafico-general}
+grafico_temperatura_mensual(estaciones)
+```
+
+También podemos seleccionar estaciones y personalizar el título y los colores.
+
+```{r grafico-personalizado}
+seleccion <- estaciones[
+  estaciones$id %in% c("NH0437", "NH0472"),
+]
+
+grafico_temperatura_mensual(
+  seleccion,
+  colores = c(
+    NH0437 = "steelblue",
+    NH0472 = "tomato"
+  ),
+  titulo = "Comparacion de temperaturas mensuales"
+)
+```
