@@ -18,6 +18,7 @@ Roxygen: list(markdown = TRUE)
 Imports: 
     cli,
     dplyr,
+    ggplot2,
     readr,
     rlang,
     stats,
