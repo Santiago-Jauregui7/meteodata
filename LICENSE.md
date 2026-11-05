@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2026 meteodata authors
+Copyright (c) 2026 Santiago Jauregui and Mateo Garcia
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the

@@ -1,4 +1,4 @@
 # License
 
     YEAR: 2026
-    COPYRIGHT HOLDER: meteodata authors
+    COPYRIGHT HOLDER: Santiago Jauregui and Mateo Garcia
