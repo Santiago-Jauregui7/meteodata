@@ -60,8 +60,6 @@ tabla_resumen_temperatura <- function(datos, ids = NULL) {
   dplyr::arrange(resumen, match(.data$id, ids_sel))
 }
 
-
-
 estadistica_valida <- function(x, f) {
   x <- x[!is.na(x)]
   if (length(x) == 0) NA_real_ else f(x)

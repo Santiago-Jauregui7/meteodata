@@ -8,7 +8,7 @@ tabla_resumen_temperatura(datos, ids = NULL)
 }
 \arguments{
 \item{datos}{Data frame con las columnas id y
-temperatura_abrigo_150cm.}
+temperatura_abrigo_150cm. Esta última debe ser numérica.}
 
 \item{ids}{Vector de identificadores de estaciones.
 Si es NULL, se utilizan todas las estaciones.}
