@@ -12,6 +12,7 @@ Description: Herramientas para leer archivos de estaciones meteorologicas del IN
 License: MIT + file LICENSE
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
+Language: es
 Roxygen: list(markdown = TRUE)
 Imports: 
     cli,
