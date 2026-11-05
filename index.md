@@ -1,7 +1,24 @@
 # meteodata
 
-Paquete de R desarrollado para Programación II que permite leer, resumir
-y visualizar datos meteorológicos de estaciones del INTA.
+¡Te damos la bienvenida a meteodata! Somos Santiago Jauregui y Mateo
+Garcia, y desarrollamos este paquete de R para la materia Programación
+II.
+
+meteodata permite leer, resumir y visualizar datos meteorológicos de
+estaciones del INTA (Instituto Nacional de Tecnología Agropecuaria).
+
+**¿Para quién es?** Para cualquier persona que quiera explorar datos
+meteorológicos diarios con R, sin necesidad de armar sus propias
+herramientas para leerlos y resumirlos.
+
+**¿Por qué existe?** Nació como trabajo de la materia: quisimos
+construir un paquete completo, con funciones, documentación, tests y
+sitio web, a partir de datos reales de cinco estaciones.
+
+**¿Qué contribuciones buscamos?** Reportes de problemas, mejoras en la
+documentación, nuevos tests y propuestas para mejorar las funciones. Si
+querés colaborar, leé la [guía de
+contribución](https://santiago-jauregui7.github.io/meteodata/CONTRIBUTING.md).
 
 ## Autores
 
