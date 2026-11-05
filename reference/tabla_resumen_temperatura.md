@@ -14,7 +14,8 @@ tabla_resumen_temperatura(datos, ids = NULL)
 
 - datos:
 
-  Data frame con las columnas id y temperatura_abrigo_150cm.
+  Data frame con las columnas id y temperatura_abrigo_150cm. Esta última
+  debe ser numérica.
 
 - ids:
 
