@@ -6,7 +6,7 @@
 #' Los grupos sin temperaturas validas devuelven NA.
 #'
 #' @param datos Data frame con las columnas id y
-#'   temperatura_abrigo_150cm.
+#'   temperatura_abrigo_150cm. Esta última debe ser numérica.
 #' @param ids Vector de identificadores de estaciones.
 #'   Si es NULL, se utilizan todas las estaciones.
 #'
@@ -28,6 +28,11 @@ tabla_resumen_temperatura <- function(datos, ids = NULL) {
   faltan <- setdiff(columnas, names(datos))
   if (length(faltan) > 0) {
     stop("Faltan las columnas: ", paste(faltan, collapse = ", "), call. = FALSE)
+  }
+
+  if (!is.numeric(datos$temperatura_abrigo_150cm)) {
+    stop("La columna 'temperatura_abrigo_150cm' debe ser numerica.",
+         call. = FALSE)
   }
 
   if (is.null(ids)) {
@@ -56,9 +61,8 @@ tabla_resumen_temperatura <- function(datos, ids = NULL) {
 }
 
 
+
 estadistica_valida <- function(x, f) {
   x <- x[!is.na(x)]
   if (length(x) == 0) NA_real_ else f(x)
 }
-
-

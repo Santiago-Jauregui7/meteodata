@@ -117,3 +117,17 @@ test_that("rechaza datos sin las columnas necesarias", {
     "Faltan las columnas"
   )
 })
+
+test_that("rechaza temperaturas no numericas", {
+
+  datos_texto <- data.frame(
+    id = c("A", "A"),
+    temperatura_abrigo_150cm = c("10", "veinte"),
+    stringsAsFactors = FALSE
+  )
+
+  expect_error(
+    tabla_resumen_temperatura(datos_texto),
+    "numerica"
+  )
+})
