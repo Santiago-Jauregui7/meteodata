@@ -77,5 +77,32 @@ leer_datos <- function(id, ruta) {
     cli::cli_inform("Leyendo el archivo que ya estaba descargado.")
   }
 
-  readr::read_csv(ruta, show_col_types = FALSE)
+  # Leer los nombres de las columnas del archivo
+  encabezado <- readr::read_csv(
+    ruta,
+    n_max = 0,
+    col_types = readr::cols(
+      .default = readr::col_character()
+    ),
+    show_col_types = FALSE
+  )
+
+  # Usar los mismos tipos que en data-raw/estaciones.R
+  tipos <- readr::cols(
+    .default = readr::col_double(),
+    id = readr::col_character(),
+    fecha = readr::col_date(),
+    direccion_viento_1000cm = readr::col_character()
+  )
+
+  # Aplicar las especificaciones de las columnas presentes
+  tipos$cols <- tipos$cols[
+    names(tipos$cols) %in% names(encabezado)
+  ]
+
+  readr::read_csv(
+    ruta,
+    col_types = tipos,
+    show_col_types = FALSE
+  )
 }

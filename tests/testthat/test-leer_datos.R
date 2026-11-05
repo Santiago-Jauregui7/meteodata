@@ -59,3 +59,43 @@ test_that("rechaza rutas invalidas", {
     "archivo CSV"
   )
 })
+
+test_that("conserva los valores despues de muchas filas vacias", {
+
+  archivo <- tempfile(fileext = ".csv")
+
+  columnas <- c(
+    "id",
+    "fecha",
+    "direccion_viento_1000cm",
+    "radiacion_neta",
+    "temperatura_suelo_5cm_media",
+    "profundidad_napa"
+  )
+
+  contenido <- c(
+    paste(columnas, collapse = ","),
+    rep("NH0437,2024-01-01,,,,", 1000),
+    "NH0437,2024-01-02,270,12.5,18.2,1.4"
+  )
+
+  writeLines(contenido, archivo)
+
+  resultado <- suppressMessages(
+    leer_datos("NH0437", archivo)
+  )
+
+  expect_equal(nrow(resultado), 1001L)
+  expect_equal(nrow(readr::problems(resultado)), 0L)
+
+  expect_equal(
+    resultado$direccion_viento_1000cm[1001],
+    "270"
+  )
+
+  expect_equal(resultado$radiacion_neta[1001], 12.5)
+  expect_equal(resultado$temperatura_suelo_5cm_media[1001], 18.2)
+  expect_equal(resultado$profundidad_napa[1001], 1.4)
+
+  unlink(archivo)
+})
