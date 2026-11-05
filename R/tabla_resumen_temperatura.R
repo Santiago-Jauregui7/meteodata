@@ -24,15 +24,22 @@
 #' )
 
 tabla_resumen_temperatura <- function(datos, ids = NULL) {
+  if (!is.data.frame(datos)) {
+    cli::cli_abort("datos debe ser un data frame.")
+  }
+
   columnas <- c("id", "temperatura_abrigo_150cm")
   faltan <- setdiff(columnas, names(datos))
   if (length(faltan) > 0) {
-    stop("Faltan las columnas: ", paste(faltan, collapse = ", "), call. = FALSE)
+    cli::cli_abort(
+      "Faltan las columnas: {paste(faltan, collapse = ', ')}."
+    )
   }
 
   if (!is.numeric(datos$temperatura_abrigo_150cm)) {
-    stop("La columna 'temperatura_abrigo_150cm' debe ser numerica.",
-         call. = FALSE)
+    cli::cli_abort(
+      "La columna 'temperatura_abrigo_150cm' debe ser numerica."
+    )
   }
 
   if (is.null(ids)) {
@@ -41,8 +48,9 @@ tabla_resumen_temperatura <- function(datos, ids = NULL) {
     ids_sel <- unique(ids)
     inexistentes <- setdiff(ids_sel, unique(datos$id))
     if (length(inexistentes) > 0) {
-      stop("ID(s) inexistente(s): ",
-           paste(inexistentes, collapse = ", "), call. = FALSE)
+      cli::cli_abort(
+        "ID(s) inexistente(s): {paste(inexistentes, collapse = ', ')}."
+      )
     }
   }
 

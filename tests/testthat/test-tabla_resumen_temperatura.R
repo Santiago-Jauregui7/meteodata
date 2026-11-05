@@ -131,3 +131,16 @@ test_that("rechaza temperaturas no numericas", {
     "numerica"
   )
 })
+
+test_that("rechaza datos que no son un data frame", {
+
+  expect_error(
+    tabla_resumen_temperatura("no soy un data frame"),
+    "data frame"
+  )
+
+  expect_error(
+    tabla_resumen_temperatura(c(1, 2, 3)),
+    "data frame"
+  )
+})
