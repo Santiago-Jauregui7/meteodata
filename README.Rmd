@@ -94,7 +94,16 @@ datos <- leer_datos(
   ruta = "datos/NH0437.csv"
 )
 
-head(datos)
+head(datos[c("id", "fecha", "temperatura_abrigo_150cm")])
+#> # A tibble: 6 × 3
+#>   id     fecha      temperatura_abrigo_150cm
+#>   <chr>  <date>                        <dbl>
+#> 1 NH0437 1970-08-01                     23.3
+#> 2 NH0437 1970-08-02                     26.6
+#> 3 NH0437 1970-08-03                     17.4
+#> 4 NH0437 1970-08-04                     11.0
+#> 5 NH0437 1970-08-05                     11.1
+#> 6 NH0437 1970-08-06                     13.6
 ```
 
 ## Resumir temperaturas
